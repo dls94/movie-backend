@@ -11,8 +11,8 @@ class Movie(Base):
     title = Column(String)
     genres = Column(String)
 
-    rating = relationship("Rating", back_populates="movie", cascade="all, delete")
-    tag = relationship("Tag", back_populates="movie", cascade="all, delete")
+    ratings = relationship("Rating", back_populates="movie", cascade="all, delete")
+    tags = relationship("Tag", back_populates="movie", cascade="all, delete")
     link = relationship("Link", back_populates="movie", uselist=False, cascade="all, delete")
 
 
@@ -24,7 +24,7 @@ class Rating(Base):
     rating = Column(Float)
     timestamp = Column(Integer)
 
-    movie = relationship("Movie", back_populates='rating')
+    movie = relationship("Movie", back_populates='ratings')
 
 
 class Tag(Base):
@@ -35,7 +35,7 @@ class Tag(Base):
     tag = Column(String)
     timestamp = Column(Integer)
 
-    movie = relationship("Movie", back_populates='tag')
+    movie = relationship("Movie", back_populates='tags')
 
 
 class Link(Base):
